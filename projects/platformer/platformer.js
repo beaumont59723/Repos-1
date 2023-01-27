@@ -3,6 +3,29 @@ $(function () {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
   window.addEventListener("load", loadJson);
+  
+ createPlatform(1000, 675, 200, 20);
+ createPlatform(650, 550, 200, 20);
+ createPlatform(1000, 450, 150, 20);
+ createPlatform(1200, 340, 150, 20);
+ createPlatform(500, 250, 600, 20);
+ createCollectable("steve", 650, 500, 0, 0);
+ createCollectable("steve", 1300, 290, 0, 0);
+ createCollectable("grace", 500, 200, 0, 0);
+ createCannon("left", 440, 2000);
+ createCannon("left", 340, 3000);
+ createCannon("left", 160, 1500);
+
+
+
+
+
+
+
+
+
+ 
+
 
   function setup() {
     if (firstTimeSetup) {
