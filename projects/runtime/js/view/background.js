@@ -36,20 +36,59 @@ var background = function (window) {
             // TODO: 2 - Part 2
             // this fills the background with a obnoxious yellow
             // you should modify this to suit your game
-            var backgroundFill = draw.rect(canvasWidth,canvasHeight,'yellow');
+            var backgroundFill = draw.rect(canvasWidth, canvasHeight,'LightBlue');
             background.addChild(backgroundFill);
             
+            sky = draw.bitmap("img/skybackground.jpg");
+            sky.x = 0;
+            sky.y = 0;
+            sky.scaleX = 2.5;
+            sky.scaleY = 2.0;
+            background.addChild(sky);
             // TODO: 3 - Add a moon and starfield
+
+            for(var i = 0; i < 100; i++){
+                var cloud = draw.bitmap("img/cloud.png");
+cloud.x = canvasWidth * Math.random();
+cloud.y = groundY * Math.random();
+cloud.scaleX = 0.075;
+cloud.scaleY = 0.075;
+background.addChild(cloud);
+            }
+
+            var sun = draw.bitmap("img/sun.png");
+            sun.x = 1100;
+            sun.y = -100;
+            sun.scaleX = 1.3;
+            sun.scaleY = 1.3;
+            background.addChild(sun);
+
             
             
             // TODO 5: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
             
+            for (var i = 0; i < 5; ++i) {
+                var buildingHeight = Math.random()*250;
+                var building = draw.bitmap("img/house.png");//draw.rect(75, buildingHeight, "Red", "White", 1);
+                building.x = 350 * i;
+                building.y = groundY - 360
+                background.addChild(building);
+                buildings.push(building);
+              }
             
+
             // TODO 4: Part 1 - Add a tree
-            
+            sign = draw.bitmap("img/stopsign.png");
+            sign.x = 880;
+            sign.y = 117;
+            sign.scaleX = .7
+            sign.scaleY = .7
+            background.addChild(sign);
             
         } // end of render function - DO NOT DELETE
-        
+        var sign;
+        var sky;
+        var buildings = [];
         
         // Perform background animation
         // called on each timer "tick" - 60 times per second
@@ -60,10 +99,20 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 4: Part 2 - Move the tree!
+            sign.x = sign.x - 1;
+
+            if (sign.x < -200) {
+            sign.x = canvasWidth;
+        }
             
             
             // TODO 5: Part 2 - Parallax
-            
+        for (var i = 0; i < buildings.length; i++){
+            buildings[i].x = buildings[i].x -1;
+            if (buildings[i].x < -200) {
+                buildings[i].x = canvasWidth;
+            }
+        }    
 
         } // end of update function - DO NOT DELETE
         
